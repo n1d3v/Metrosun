@@ -1,0 +1,114 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Metrosun.WeatherPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Metrosun.UserControls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <Grid>
+        <Image 
+            x:Name="WeatherBG"
+            Source="Images\WBGs\default.jpg"
+            Stretch="Fill"
+            Opacity="0.7" />
+
+        <phone:Pivot x:Name="WeatherPivot" Title="Location Name Placeholder">
+            <phone:PivotItem Header="current">
+                <StackPanel Margin="14,26" VerticalAlignment="Bottom">
+                    <StackPanel x:Name="WeatherDetails">
+                        <StackPanel x:Name="WeatherTemperature" Orientation="Horizontal">
+                            <TextBlock x:Name="WeatherTemp" FontSize="200" FontWeight="Light" />
+                            <TextBlock Text="°C" FontSize="100" Margin="0,36,0,0" />
+                        </StackPanel>
+                        <TextBlock x:Name="WeatherDesc" Margin="0,-36,0,0" Opacity="0.7" FontWeight="SemiBold" />
+                        <StackPanel x:Name="MoreWeatherDetails">
+                            <Rectangle Height="1" Fill="White" Opacity="0.3" HorizontalAlignment="Stretch" Margin="0,10" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <ListBox x:Name="WeatherInfoBox" VerticalAlignment="Center" Grid.Column="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:WeatherItem />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                                <StackPanel Opacity="0.85" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Feels like" Width="100" />
+                                        <TextBlock x:Name="FeelsLikeText" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Humidity" Width="100" />
+                                        <TextBlock x:Name="HumidityText" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Wind" Width="100" />
+                                        <TextBlock x:Name="WindSpeedsText" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </phone:PivotItem>
+            <phone:PivotItem Header="today">
+                <TextBlock Text="Coming soon!" />
+            </phone:PivotItem>
+            <phone:PivotItem Header="hourly">
+                <TextBlock Text="Coming soon!" />
+            </phone:PivotItem>
+            <phone:PivotItem Header="daily">
+                <TextBlock Text="Coming soon!" />
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar\search.png" Text="search" Click="ApplicationBarIconButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar\refresh.png" Text="refresh" Click="ApplicationBarIconButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar\places.png" Text="my places" Click="ApplicationBarIconButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar\current.png" Text="use current" Click="ApplicationBarIconButton_Click" />
+
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="settings" Click="ApplicationBarIconButton_Click" />
+                <shell:ApplicationBarMenuItem x:Name="AboutMenuItem" Text="about metrosun" Click="AboutMenuItem_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
