@@ -17,3 +17,6 @@ This teaches you how to get an OpenWeatherMap API key, I'm using Firefox for thi
    - You can copy it by right clicking on it, hovering over 'Copy Value' then 'Copy URL'
 5. You should see a part like `&appid={AppID}` at the end of the URL, copy the {AppID} value
 Congratulations! You now have an OpenWeatherMap API key.
+# Credits
+- Prognoza: The weather backgrounds used in Metrosun
+- Kierownik223, timthewarriror_: Testing the application early
